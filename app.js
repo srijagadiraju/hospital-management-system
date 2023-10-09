@@ -1,18 +1,26 @@
 const express = require("express");
-const morgan = require('morgan');
-const dotenv = require("dotenv").config();
-const errorHandler = require(`./middleware/errorHandler`)
+const morgan = require("morgan");
+
+const errorHandler = require(`./middleware/errorHandler`);
+const dotenv = require("dotenv");
+dotenv.config({ path: "./config.env" });
 
 const app = express();
 
-const port = process.env.PORT || 5000; 
+// middleware
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
 
-app.use(express.json()); // provides parser to help parse data stream that is received from client on the server side 
-app.use("/api/contacts", require("./routes/contactRoutes")); // middleware 
+const port = process.env.PORT || 3000;
+const contactRoute = require("./routes/contactRoutes");
+
+app.use(express.json()); // provides parser to help parse data stream that is received from client on the server side
+app.use("/api/contacts", contactRoute); // middleware
 app.use(errorHandler);
 
 app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+  console.log(`Server running on port ${port}`);
 });
 
 // const express = require("express");
