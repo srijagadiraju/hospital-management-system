@@ -65,56 +65,53 @@
 
 // module.exports = HospitalDB();
 
+import { MongoClient } from "mongodb";
+import fs from "fs";
+// import {
+//   getProfiles,
+//   createProfile,
+//   getProfile,
+//   updateProfile,
+//   deleteProfile,
+// } from "../controllers/contactController";
 
-// const { MongoClient } = require("mongodb");
-// const dotenv = require("dotenv").config();
+async function getProfile(client, name) {
+  const result = await client
+    .db("Users")
+    .collection("Users-info")
+    .insertOne(newProfile); //inserts a single document into the collection
+}
 
-// const url = process.env.DB_URL || "mongodb://localhost:27017";
-// const DB_NAME = "hospital-management-db"; // REPLACE WITH DATABASE NAME!
-// const client = new MongoClient(url, { useUnifiedTopology: true });
+async function createProfile(client, newProfile) {
+  const result = await client
+    .db("Users")
+    .collection("Users-info")
+    .insertOne(newProfile); //inserts a single document into the collection
+  console.log(
+    `New Profile created with the following id: ${result.insertedId}`
+  );
+}
 
-// async function connectToDatabase() {
-//   await client.connect();
-//   console.log("Connected to the database!");
-//   return client.db(DB_NAME);
+// async function updateProfile(client, name, updatedProfile){
+//   const result = await client
+//     .db("Users")
+//     .collection("Users-info")
+//     .updateOne(newProfile);
+//   // $set operator replaces the value of a field with the specified value
+//   console.log(`${result.matchedCount} document(s) matched the criteria`);
+
 // }
 
-// module.exports = { connectToDatabase };
+async function createMultipleProfile(client, newProfiles) {
+  const result = await client
+    .db("Users")
+    .collection("users-info")
+    .insertMany(newProfiles);
 
-import { MongoClient } from 'mongodb';
-
-
-async function main() {
-
-  const uri = "mongodb+srv://hlahtoo1998:project2123@cluster0.qfd7kqx.mongodb.net/?retryWrites=true&w=majority";
-  const client = new MongoClient(uri);
-
-  try {
-    await client.connect();
-    await createProfile(client, {
-      name: "Hla Htoo",
-      id: "13456",
-      department: "Pathology",
-      item: "Catheter"
-    })
-    //await listDatabases(client);
-  } catch (e) {
-    console.error(e);
-  } finally {
-    await client.close();
-  }
-}
-
-main().catch(console.error);
-
-async function getProfile(client, name){
-  const result = await client.db("Users").collection("name").insertOne(newProfile); //inserts a single document into the collection
-
-}
-
-async function createProfile(client, newProfile){
-  const result = await client.db("Users").collection("name").insertOne(newProfile); //inserts a single document into the collection
-  console.log(`New Profile created with the following id: ${result.insertedId}`);
+  console.log(
+    `${result.insertedCount} new profiles created with the following ids`
+  );
+  console.log(result.insertedIds);
 }
 
 async function listDatabases(client) {
@@ -125,3 +122,44 @@ async function listDatabases(client) {
     console.log(`- ${db.name}`);
   });
 }
+
+const uri =
+  "mongodb+srv://hlahtoo1998:28H1JDxdnJqipwwL@cluster0.qfd7kqx.mongodb.net/?retryWrites=true&w=majority";
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+const client = new MongoClient(uri);
+
+async function main() {
+  try {
+    await client.connect();
+    await listDatabases(client);
+
+    await fs.readFile("../data/requests.json", "utf8", (err, data) => {
+      if (err) {
+        console.error("Error reading file:", err);
+        return;
+      }
+
+      // Parse the JSON data into an array of objects
+      try {
+        const arrayOfObjects = JSON.parse(data);
+        createMultipleProfile(client, arrayOfObjects);
+      } catch (parseError) {
+        console.error("Error parsing JSON:", parseError);
+      }
+    });
+    // console.log(arrayOfObjects);
+    await createProfile(client, {
+      name: "Hla Htoo",
+      id: "13456",
+      department: "Pathology",
+      item: "Catheter",
+    });
+    //await listDatabases(client);
+  } catch (e) {
+    console.error(e);
+  } finally {
+    await client.close();
+  }
+}
+
+main().catch(console.error);

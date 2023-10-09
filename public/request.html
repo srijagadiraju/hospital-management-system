@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hospital Management System</title>
-    <link rel="stylesheet" href="./styles/styles.css" />
+    <title>Hospital Management System Request Form</title>
+    <link rel="stylesheet" href="./styles/request.css" />
+    <script src="https://kit.fontawesome.com/b766521d75.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       rel="stylesheet"
@@ -35,11 +36,35 @@
     </div>  
 </header>
 
-<div class="content">
-    <h1>Welcome To Hospital Management System!</h1>
-    <p>This website is designed for healthcare professionals at this hospital to contact inventory specialists <br> about requesting certain items and notifying them when certain items are running low. <br> <br> Sign in using your hospital credentials to get started!</p>
+<div class="login">
+    <div class="form-box">
+        <h1 id="title">Request</h1>
+        <form>
+            <div class="input-field">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" placeholder="Name">
+            </div>
+            <div class="input-field">
+                <i class="fa-solid fa-id-card"></i>
+                <input type="text" placeholder="ID">
+            </div>
+            <div class="input-field">
+                <i class="fa-solid fa-building"></i>
+                <input type="text" placeholder="Department">
+            </div>
+            <div class="input-field">
+                <i class="fa-solid fa-box"></i>
+                <input type="text" placeholder="Item">
+            </div>
+            <div class="btn-field">
+                <button type="submit" id="submitRequest">Submit</button>
+            </div>
+        </form>
+    </div>
 </div>
 
-
+<script>
+    // JavaScript functionality can be added here
+</script>
 </body>
 </html>
