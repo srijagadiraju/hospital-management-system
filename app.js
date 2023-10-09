@@ -3,6 +3,7 @@ import express from "express";
 import morgan from "morgan";
 import dotenv from "dotenv";
 import errorHandler from "./middleware/errorHandler";
+import contactRoute from "./routes/contactRoutes";
 
 // const morgan = require("morgan");
 // const errorHandler = require(`./middleware/errorHandler`);
@@ -18,7 +19,7 @@ if (process.env.NODE_ENV === "development") {
 }
 
 const port = process.env.PORT || 3000;
-const contactRoute = require("./routes/contactRoutes");
+// const contactRoute = require("./routes/contactRoutes");
 
 app.use(express.json()); // provides parser to help parse data stream that is received from client on the server side
 app.use("/api/contacts", contactRoute); // middleware
