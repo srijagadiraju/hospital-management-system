@@ -12,7 +12,7 @@ function RequestsModule(requestsID = "#requests") {
                   <p><strong>Department:</strong> ${request.department}</p>
                   <p><strong>Item:</strong> ${request.item}</p>
                   <div class="card-buttons">
-                      <button class="btn-accept">Accept Request</button>
+                      <button class="btn-accept">Update Request</button>
                       <button class="btn-delete">Remove Request</button>
                   </div>
               </div>
