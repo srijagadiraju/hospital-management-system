@@ -7,7 +7,7 @@ import {
   deleteProfile,
 } from "../controllers/contactController";
 
-const router = express.Router();
+export const router = express.Router();
 // const {
 //   getProfiles,
 //   createProfile,

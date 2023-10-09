@@ -2,9 +2,10 @@
 import express from "express";
 import morgan from "morgan";
 import dotenv from "dotenv";
-import errorHandler from "./middleware/errorHandler";
+import { errorHandler } from "./middleware/errorHandler";
 import contactRoute from "./routes/contactRoutes";
 
+console.log("1,2,3");
 // const morgan = require("morgan");
 // const errorHandler = require(`./middleware/errorHandler`);
 // const dotenv = require("dotenv");

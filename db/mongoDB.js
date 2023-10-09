@@ -66,21 +66,78 @@
 // module.exports = HospitalDB();
 
 import { MongoClient } from "mongodb";
-import {
-  getProfiles,
-  createProfile,
-  getProfile,
-  updateProfile,
-  deleteProfile,
-} from "../controllers/contactController";
+import fs from "fs";
+// import {
+//   getProfiles,
+//   createProfile,
+//   getProfile,
+//   updateProfile,
+//   deleteProfile,
+// } from "../controllers/contactController";
+
+async function getProfile(client, name) {
+  const result = await client
+    .db("Users")
+    .collection("Users-info")
+    .insertOne(newProfile); //inserts a single document into the collection
+}
+
+async function createProfile(client, newProfile) {
+  const result = await client
+    .db("Users")
+    .collection("Users-info")
+    .insertOne(newProfile); //inserts a single document into the collection
+  console.log(
+    `New Profile created with the following id: ${result.insertedId}`
+  );
+}
+
+async function createMultipleProfile(client, newProfiles) {
+  const result = await client
+    .db("Users")
+    .collection("users-info")
+    .insertMany(newProfiles);
+
+  console.log(
+    `${result.insertedCount} new profiles created with the following ids`
+  );
+  console.log(result.insertedIds);
+}
+
+async function listDatabases(client) {
+  const databasesList = await client.db().admin().listDatabases();
+
+  console.log("Databases: ");
+  databasesList.databases.forEach((db) => {
+    console.log(`- ${db.name}`);
+  });
+}
+
+const uri =
+  "mongodb+srv://hlahtoo1998:28H1JDxdnJqipwwL@cluster0.qfd7kqx.mongodb.net/?retryWrites=true&w=majority";
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+const client = new MongoClient(uri);
 
 async function main() {
-  const uri =
-    "mongodb+srv://hlahtoo1998:project2123@cluster0.qfd7kqx.mongodb.net/?retryWrites=true&w=majority";
-  const client = new MongoClient(uri);
-
   try {
     await client.connect();
+    await listDatabases(client);
+
+    await fs.readFile("../data/requests.json", "utf8", (err, data) => {
+      if (err) {
+        console.error("Error reading file:", err);
+        return;
+      }
+
+      // Parse the JSON data into an array of objects
+      try {
+        const arrayOfObjects = JSON.parse(data);
+        createMultipleProfile(client, arrayOfObjects);
+      } catch (parseError) {
+        console.error("Error parsing JSON:", parseError);
+      }
+    });
+    // console.log(arrayOfObjects);
     await createProfile(client, {
       name: "Hla Htoo",
       id: "13456",
@@ -96,29 +153,3 @@ async function main() {
 }
 
 main().catch(console.error);
-
-async function getProfile(client, name) {
-  const result = await client
-    .db("Users")
-    .collection("name")
-    .insertOne(newProfile); //inserts a single document into the collection
-}
-
-async function createProfile(client, newProfile) {
-  const result = await client
-    .db("Users")
-    .collection("name")
-    .insertOne(newProfile); //inserts a single document into the collection
-  console.log(
-    `New Profile created with the following id: ${result.insertedId}`
-  );
-}
-
-async function listDatabases(client) {
-  const databasesList = await client.db().admin().listDatabases();
-
-  console.log("Databases: ");
-  databasesList.databases.forEach((db) => {
-    console.log(`- ${db.name}`);
-  });
-}

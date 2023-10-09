@@ -1,6 +1,6 @@
 import { constants } from "../constants";
 
-const errorHandler = (err, req, res, next) => {
+export const errorHandler = (err, req, res, next) => {
   const statusCode = res.statusCode ? res.statusCode : 500;
   switch (statusCode) {
     case constants.VALIDATION_ERROR: // if the status code is 400, then need to pass that it is validation failed
