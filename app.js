@@ -1,8 +1,13 @@
-const express = require("express");
-const morgan = require("morgan");
+// const express = require("express");
+import express from "express";
+import morgan from "morgan";
+import dotenv from "dotenv";
+import errorHandler from "./middleware/errorHandler";
 
-const errorHandler = require(`./middleware/errorHandler`);
-const dotenv = require("dotenv");
+// const morgan = require("morgan");
+// const errorHandler = require(`./middleware/errorHandler`);
+// const dotenv = require("dotenv");
+
 dotenv.config({ path: "./config.env" });
 
 const app = express();
