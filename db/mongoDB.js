@@ -66,6 +66,13 @@
 // module.exports = HospitalDB();
 
 import { MongoClient } from "mongodb";
+import {
+  getProfiles,
+  createProfile,
+  getProfile,
+  updateProfile,
+  deleteProfile,
+} from "../controllers/contactController";
 
 async function main() {
   const uri =
