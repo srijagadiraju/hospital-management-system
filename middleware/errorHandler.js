@@ -1,6 +1,6 @@
-import { constants } from "../constants";
+const constants = require("../constants");
 
-export const errorHandler = (err, req, res, next) => {
+const errorHandler = (err, req, res, next) => {
   const statusCode = res.statusCode ? res.statusCode : 500;
   switch (statusCode) {
     case constants.VALIDATION_ERROR: // if the status code is 400, then need to pass that it is validation failed
@@ -48,4 +48,4 @@ export const errorHandler = (err, req, res, next) => {
   }
 };
 // need to create a constants file to handle all error codes -- constants.js
-export default errorHandler;
+module.exports = errorHandler;

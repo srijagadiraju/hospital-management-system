@@ -176,7 +176,7 @@ function MongoDBUtil() {
   return myDB;
 }
 
-myDB = MongoDBUtil();
+module.exports = MongoDBUtil();
 // const dave = {
 //   name: "Dave Smith",
 //   id: "10240",
@@ -184,10 +184,10 @@ myDB = MongoDBUtil();
 //   item: "Ultrasound Machine",
 // };
 // myDB.deleteRequest(dave);
-myDB.insertNewUser({
-  email: "asdad@gmail.com",
-  password: "srija",
-});
+// myDB.insertNewUser({
+//   email: "asdad@gmail.com",
+//   password: "srija",
+// });
 
 // myDB
 //   .getAllRequests()

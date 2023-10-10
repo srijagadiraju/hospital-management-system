@@ -1,17 +1,17 @@
-import asyncHandler from "express-async-handler";
+const asyncHandler = require("express-async-handler");
 
 // @desc Get All Profiles
 // @route GET /api/contacts
 // @access public
 
-export const getProfiles = asyncHandler(async (req, res) => {
+const getProfiles = asyncHandler(async (req, res) => {
   res.status(200).json({ message: "Get All Profiles" });
 });
 
 // @desc Create New Profile
 // @route POST /api/contacts
 // @access public
-export const createProfile = asyncHandler(async (req, res) => {
+const createProfile = asyncHandler(async (req, res) => {
   console.log("The request body is:", req.body);
   const { name, id, department, item } = req.body;
   if (!name || !id || !department || !item) {
@@ -24,29 +24,28 @@ export const createProfile = asyncHandler(async (req, res) => {
 // @desc Get Profile
 // @route GET /api/contacts/:id
 // @access public
-export const getProfile = asyncHandler(async (req, res) => {
+const getProfile = asyncHandler(async (req, res) => {
   res.status(200).json({ message: `Get Profile For ${req.params.id}` });
 });
 
 // @desc Update Profile
 // @route PUT /api/contacts/:id
 // @access public
-export const updateProfile = asyncHandler(async (req, res) => {
+const updateProfile = asyncHandler(async (req, res) => {
   res.status(200).json({ message: `Update Profile For ${req.params.id}` });
 });
 
 // @desc Delete Profile
 // @route DELETE /api/contacts/:id
 // @access public
-export const deleteProfile = asyncHandler(async (req, res) => {
+const deleteProfile = asyncHandler(async (req, res) => {
   res.status(200).json({ message: `Delete Profile For ${req.params.id}` });
 });
 
-// module.exports = {
-//   getProfiles,
-//   createProfile,
-//   getProfile,
-//   updateProfile,
-//   deleteProfile,
-// };
-// };
+module.exports = {
+  getProfiles,
+  createProfile,
+  getProfile,
+  updateProfile,
+  deleteProfile,
+};

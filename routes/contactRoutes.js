@@ -12,4 +12,4 @@ router.route("/").get(getProfiles).post(createProfile);
 
 router.route("/:id").get(getProfile).patch(updateProfile).delete(deleteProfile);
 
-export default router;
+module.exports = router;
