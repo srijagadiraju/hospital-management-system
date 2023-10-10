@@ -1,11 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hospital Management System Login Page</title>
     <link rel="stylesheet" href="./styles/login.css" />
-    <script src="https://kit.fontawesome.com/b766521d75.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/b766521d75.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       rel="stylesheet"
@@ -20,81 +23,85 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css"
     />
-</head>
-<body>
-    <script> src="./js/login.js" </script>
-<header>
-    <div class="container">
-        <img src="./images/hospital-logo.png" alt="hospital logo" class="logo">
+  </head>
+  <body>
+    <script>
+      src = "./js/login.js";
+    </script>
+    <header>
+      <div class="container">
+        <img
+          src="./images/hospital-logo.png"
+          alt="hospital logo"
+          class="logo"
+        />
         <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="login.html">Sign In/Sign Up</a></li>
-                <li><a href="request.html">Requests</a></li>
-                <li><a href="posts.html">All Posts</a></li>
-            </ul>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="login.html">Sign In/Sign Up</a></li>
+            <li><a href="request.html">Requests</a></li>
+            <li><a href="posts.html">All Posts</a></li>
+          </ul>
         </nav>
-    </div>  
-</header>
+      </div>
+    </header>
 
-<div class="login">
-    <div class="form-box">
+    <div class="login">
+      <div class="form-box">
         <h1 id="title">Sign Up!</h1>
         <form>
-            <div class="input-group">
-                <div class="input-field" id="nameField">
-                    <i class="fa-solid fa-user"></i>
-                    <input type="text" placeholder="Email">
-                </div>
-                <div class="input-field">
-                    <i class="fa-solid fa-id-card"></i>
-                    <input type="id" placeholder="Hospital ID Number">
-                </div>
-                <div class="input-field">
-                    <i class="fa-solid fa-lock"></i>
-                    <input type="Password" placeholder="Password">
-                </div>
-                <p>Forgot Password Or Having Trouble Logging In?<br> Please Contact the Hospital's IT Department</p>
+          <div class="input-group">
+            <div class="input-field" id="nameField">
+              <i class="fa-solid fa-user"></i>
+              <input type="text" placeholder="Email" required />
             </div>
-            <div class="btn-field">
-                <button type="button" id="signupButton">Sign Up</button>
-                <button type="button" id="signinButton" class="disable">Sign In</button>
+            <div class="input-field">
+              <i class="fa-solid fa-id-card"></i>
+              <input type="id" placeholder="Hospital ID Number" required />
             </div>
-
+            <div class="input-field">
+              <i class="fa-solid fa-lock"></i>
+              <input type="Password" placeholder="Password" required />
+            </div>
+            <p>
+              Forgot Password Or Having Trouble Logging In?<br />
+              Please Contact the Hospital's IT Department
+            </p>
+          </div>
+          <div class="btn-field">
+            <button type="button" id="signupButton">Sign Up</button>
+            <button type="button" id="signinButton" class="disable">
+              Sign In
+            </button>
+          </div>
         </form>
+        <a href="request.html"></a>
+      </div>
     </div>
-</div>
-<script>
-    let signupButton = document.getElementById("signupButton");
-    let signinButton = document.getElementById("signinButton");
-    let nameField = document.getElementById("nameField");
-    let title = document.getElementById("title");
+    <script>
+      let signupButton = document.getElementById("signupButton");
+      let signinButton = document.getElementById("signinButton");
+      let nameField = document.getElementById("nameField");
+      let title = document.getElementById("title");
 
-    signinButton.onclick = function(){
+      signinButton.onclick = function () {
         nameField.style.maxHeight = "0";
-        title.innerHTML = "Sign In"; 
-        signupButton.classList.add("disable"); 
-        signinButton.classList.remove("disable"); 
-    }
+        title.innerHTML = "Sign In";
+        signupButton.classList.add("disable");
+        signinButton.classList.remove("disable");
+      };
 
-    signupButton.onclick = function(){
+      signupButton.onclick = function () {
         nameField.style.maxHeight = "60px";
-        title.innerHTML = "Sign Up"; 
-        signupButton.classList.remove("disable"); 
-        signinButton.classList.add("disable"); 
-    }
-
-</script>
-
-
-</body>
+        title.innerHTML = "Sign Up";
+        signupButton.classList.remove("disable");
+        signinButton.classList.add("disable");
+      };
+    </script>
+  </body>
 </html>
 
-
-
-
-
-    <!-- <form class="form" id="login">
+<!-- <form class="form" id="login">
         <h1 class="form-title">Login </h1>
         <div class="form-title form-error">Incorrect Username or Password</div>
         <div class="form-input-group">

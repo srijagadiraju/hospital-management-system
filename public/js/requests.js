@@ -4,7 +4,7 @@ function RequestsModule(requestsID = "#requests") {
   const requestsElement = document.querySelector(requestsID);
 
   function createRequestCard(request) {
-      return `<div class="col-4">
+    return `<div class="col-4">
           <div class="request card">
               <div class="card-body">
                   <h5 class="card-title">${request.name}</h5>
@@ -21,15 +21,15 @@ function RequestsModule(requestsID = "#requests") {
   }
 
   function redraw(requests) {
-      requestsElement.innerHTML = "";
-      requestsElement.innerHTML = requests.map(createRequestCard).join("\n");
+    requestsElement.innerHTML = "";
+    requestsElement.innerHTML = requests.map(createRequestCard).join("\n");
   }
 
   async function loadRequests() {
-      const res = await fetch("../data/requests.json");
-      const requests = await res.json();
+    const res = await fetch("../data/requests.json");
+    const requests = await res.json();
 
-      me.redraw(requests);
+    me.redraw(requests);
   }
 
   me.redraw = redraw;
