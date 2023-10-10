@@ -1,20 +1,12 @@
-import express from "express";
-import {
+const express = require("express");
+const router = express.Router();
+const {
   getProfiles,
   createProfile,
   getProfile,
   updateProfile,
   deleteProfile,
-} from "../controllers/contactController";
-
-export const router = express.Router();
-// const {
-//   getProfiles,
-//   createProfile,
-//   getProfile,
-//   updateProfile,
-//   deleteProfile,
-// } = require("../controllers/contactController");
+} = require("../controllers/contactController");
 
 router.route("/").get(getProfiles).post(createProfile);
 
