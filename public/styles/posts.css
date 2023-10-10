@@ -1,0 +1,140 @@
+/* MODAL WINDOW */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+}
+
+.update-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: #f3f3f3;
+  padding: 5rem 6rem;
+  box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: all 0.5s;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  transition: all 0.5s;
+}
+
+.btn--close-modal {
+  font-family: inherit;
+  color: #6474ff;
+  position: absolute;
+  top: 0.5rem;
+  right: 2rem;
+  font-size: 2rem;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.form-box {
+  width: 90%;
+  max-width: 450px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 50px 60px 70px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-box h1 {
+  font-size: 30px;
+  margin-bottom: 40px;
+  color: #6474ff;
+  position: relative;
+}
+
+.form-box h1::after {
+  content: "";
+  width: 30px;
+  height: 4px;
+  border-radius: 3px;
+  background: #6474ff;
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.input-field {
+  background: #c7cdff;
+  margin: 15px 0;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  max-height: 65px;
+  transition: max-height 0.5s;
+  overflow: hidden;
+}
+
+input {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  padding: 18px;
+}
+
+.input-field i {
+  margin-left: 15px;
+  color: rgb(139, 139, 255);
+}
+
+.btn-field {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-field button {
+  width: 100%;
+  background: #6474ff;
+  color: #fff;
+  height: 40px;
+  border-radius: 20px;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.btn-field button:hover {
+  background-color: #4055c6; /* Change the hover color as desired */
+}
+
+.input-group {
+  height: auto;
+}

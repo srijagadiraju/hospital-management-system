@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hospital Management System Viewing Requests Page</title>
     <link rel="stylesheet" href="./styles/styles.css" />
+    <link rel="stylesheet" href="./styles/posts.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       rel="stylesheet"
@@ -54,6 +55,33 @@
         <!-- Request cards will be added here dynamically -->
       </div>
     </section>
+
+    <div class="update-form form-box hidden">
+      <h1 id="title">Request</h1>
+      <button class="btn--close-modal">&times;</button>
+      <form class="request-form">
+        <div class="input-field">
+          <i class="fa-solid fa-user"></i>
+          <input type="text" placeholder="Name" />
+        </div>
+        <div class="input-field">
+          <i class="fa-solid fa-id-card"></i>
+          <input type="text" placeholder="ID" />
+        </div>
+        <div class="input-field">
+          <i class="fa-solid fa-building"></i>
+          <input type="text" placeholder="Department" />
+        </div>
+        <div class="input-field">
+          <i class="fa-solid fa-box"></i>
+          <input type="text" placeholder="Item" />
+        </div>
+        <div class="btn-field">
+          <button type="submit" id="submitRequest">Submit</button>
+        </div>
+      </form>
+    </div>
+    <div class="overlay hidden"></div>
     <script src="./js/requests.js"></script>
   </body>
 </html>

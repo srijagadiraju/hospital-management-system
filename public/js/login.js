@@ -1,12 +1,11 @@
-function login() {
-  const form = document.getElementById("login-form");
+function loginSignUp() {
+  // const form = document.getElementById("login-form");
   let signupButton = document.getElementById("signupButton");
   let signinButton = document.getElementById("signinButton");
-  let nameField = document.getElementById("nameField");
-  let title = document.getElementById("title");
-  console.log(nameField.value);
+  // let nameField = document.getElementById("nameField");
+  // let title = document.getElementById("title");
+  // console.log(nameField.value);
   function isValidEmail(email) {
-    // This is a simple regex pattern for email validation. You can make it more complex if needed.
     const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     return pattern.test(email);
   }
@@ -28,9 +27,33 @@ function login() {
       password: passwordInput.value,
     };
 
-    console.log(userData); // Here, you can send this data to your server or do other processing
+    console.log(userData);
     return userData;
   }
+
+  signupButton.addEventListener("click", async (e) => {
+    e.preventDefault();
+    const data = await handleSignIn();
+
+    try {
+      const res = await fetch("/signup", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      if (res.status === 201) {
+        alert("You have successfully signed up! Please log in now");
+        window.location.href = "./login.html";
+      } else {
+        alert("Please try again with valid email addresss");
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+    console.log(data);
+  });
 
   signinButton.addEventListener("click", async (e) => {
     e.preventDefault();
@@ -58,4 +81,4 @@ function login() {
   });
 }
 
-login();
+loginSignUp();

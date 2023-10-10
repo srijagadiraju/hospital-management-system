@@ -1,7 +1,7 @@
 const { MongoClient } = require("mongodb");
 const bcrypt = require("bcrypt");
 require("dotenv").config({ path: "../config.env" });
-
+console.log(process.env.DATABASE_PASSWORD);
 function MongoDBUtil() {
   const myDB = {};
   const password = process.env.DATABASE_PASSWORD;
