@@ -39,6 +39,7 @@ nav ul {
 }
 
 nav li {
+  font-size: 18px;
   display: inline-block;
   margin-left: 70px;
   padding-top: 30px;
@@ -48,6 +49,30 @@ nav a {
   color: #566fff;
   text-decoration: none;
   text-transform: uppercase;
+}
+
+.nav-item {
+  font-size: 18px;
+  color: #566fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: none;
+}
+#username {
+  display: none;
+}
+
+#signOutBtn {
+  display: none;
+}
+
+#signOutBtn:hover,
+#signOutBtn:active {
+  color: #1337ff;
+  /* background-color: red; */
 }
 
 nav a:hover {

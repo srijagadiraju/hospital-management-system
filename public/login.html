@@ -49,7 +49,7 @@
     <div class="login">
       <div class="form-box">
         <h1 id="title">Sign Up!</h1>
-        <form>
+        <form id="login-form">
           <div class="input-group">
             <div class="input-field" id="nameField">
               <i class="fa-solid fa-user"></i>
@@ -78,46 +78,7 @@
         <a href="request.html"></a>
       </div>
     </div>
-    <script>
-      let signupButton = document.getElementById("signupButton");
-      let signinButton = document.getElementById("signinButton");
-      let nameField = document.getElementById("nameField");
-      let title = document.getElementById("title");
 
-      signinButton.onclick = function () {
-        nameField.style.maxHeight = "0";
-        title.innerHTML = "Sign In";
-        signupButton.classList.add("disable");
-        signinButton.classList.remove("disable");
-      };
-
-      signupButton.onclick = function () {
-        nameField.style.maxHeight = "60px";
-        title.innerHTML = "Sign Up";
-        signupButton.classList.remove("disable");
-        signinButton.classList.add("disable");
-      };
-    </script>
+    <script src="./js/login.js"></script>
   </body>
 </html>
-
-<!-- <form class="form" id="login">
-        <h1 class="form-title">Login </h1>
-        <div class="form-title form-error">Incorrect Username or Password</div>
-        <div class="form-input-group">
-            <input type="text" class="form-input" autofocus placeholder="Username">
-            <div class="form-input-error-message">Error Message</div>
-        </div>
-        <div class="form-input-group">
-            <input type="password" class="form-input" autofocus placeholder="Password">
-            <div class="form-input-error-message">Password</div>
-        </div>
-        
-        <button class="form-button" type="submit">Log In</button>
-        <p class="form-text">
-            <a href="#" class="form-link">Forgot Your Password?</a>
-        </p>
-        <p class="form-text">
-            <a class="form-link" id="linkCreateAccount">Are You A New Provider? Register Here.</a>
-        </p>
-    </form> -->
