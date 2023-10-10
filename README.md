@@ -26,13 +26,13 @@ The goal of this project is to create an app with frontend and backend capabilit
 - Node.js
 - Express.js
 
-## Features of This Website:
+## Features of This Inventory System:
 - Home Page (index.html): introduces the Hospital Management System
 - Sign In/Sign Up Page (login.html): allows users to register or log into the system to view/add requests
 - Requests Page (requests.html): allows providers/users that are logged in to add an inventory request to be shown on the All Requests page (users now have a sign out option in nav bar)
 - All Requests Page (posts.html): allows providers/users that are logged in to view all inventory requests from all departments of the hospital (users have sign out option in nav bar and have a button on page that directs them the Requests page)
 
-## Website Screenshots:
+## App Screenshots:
 - Home Page:
 
 - Sign In/Sign Up Page:
