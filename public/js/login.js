@@ -25,7 +25,7 @@ function login() {
     const userData = {
       email: emailInput.value,
       ID: idInput.value,
-      Password: passwordInput.value,
+      password: passwordInput.value,
     };
 
     console.log(userData); // Here, you can send this data to your server or do other processing
@@ -35,10 +35,14 @@ function login() {
   signinButton.addEventListener("click", async (e) => {
     e.preventDefault();
     const data = handleSignIn();
+    console.log(JSON.stringify(data));
     try {
       let res = await fetch("./login", {
-        method: "GET",
-        body: data,
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: new URLSearchParams(data),
       });
       if (res.status === 200) {
         sessionStorage.setItem("email", data.email);

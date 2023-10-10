@@ -26,10 +26,17 @@ function RequestsModule(requestsID = "#requests") {
   }
 
   async function loadRequests() {
-    const res = await fetch("../data/requests.json");
-    const requests = await res.json();
+    const res = await fetch("/request", {
+      method: "get",
+    });
+    if (!res.ok) {
+      throw new Error("Network response was not ok");
+    }
 
-    me.redraw(requests);
+    const responseJson = await res.json();
+    const requestData = responseJson.data.requests;
+
+    me.redraw(requestData);
   }
 
   me.redraw = redraw;

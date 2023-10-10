@@ -5,7 +5,8 @@ require("dotenv").config({ path: "../config.env" });
 function MongoDBUtil() {
   const myDB = {};
   const password = process.env.DATABASE_PASSWORD;
-  const uri = process.env.DATABASE.replace("<PASSWORD>", password);
+  const uri =
+    "mongodb+srv://hlahtoo1998:28H1JDxdnJqipwwL@cluster0.qfd7kqx.mongodb.net/users?retryWrites=true&w=majority";
   const database = "Users";
   const colRequests = "Requests";
   const colAuthen = "Users-Login";
@@ -14,6 +15,7 @@ function MongoDBUtil() {
   // listing databases
   myDB.listDatabases = async () => {
     const databasesList = await client.db().admin().listDatabases();
+    let client;
     try {
       client = new MongoClient(uri);
       await client.connect();
@@ -30,6 +32,7 @@ function MongoDBUtil() {
   // -----------------------------------------------------
   // creating Request or User-Login
   myDB.insertRequest = async (newRequest) => {
+    let client;
     try {
       client = new MongoClient(uri);
       await client.connect();
@@ -46,6 +49,7 @@ function MongoDBUtil() {
       console.log(
         `New Profile created with the following id: ${result.insertedId}`
       );
+      return true;
     } finally {
       client.close();
     }
@@ -54,6 +58,7 @@ function MongoDBUtil() {
   // -----------------------------------------------------
   // creating User-Login
   myDB.insertNewUser = async (newUser) => {
+    let client;
     try {
       client = new MongoClient(uri);
       await client.connect();
@@ -66,6 +71,10 @@ function MongoDBUtil() {
       console.log(
         `New Profile created with the following id: ${result.insertedId}`
       );
+      return true;
+    } catch (error) {
+      console.error("Sign up error:", error.message);
+      return false;
     } finally {
       client.close();
     }
@@ -73,6 +82,7 @@ function MongoDBUtil() {
 
   // creating multiple profile
   myDB.createMultipleProfile = async (newProfiles) => {
+    let client;
     try {
       client = new MongoClient(uri);
       await client.connect();
@@ -93,12 +103,13 @@ function MongoDBUtil() {
 
   // Authenticating Login
   myDB.authenticateUsers = async (inputData) => {
+    let client;
     try {
+      client = new MongoClient(uri);
+      await client.connect();
       if (!inputData.email || !inputData.password) {
         throw new Error("Both 'email' and 'password' fields are required.");
       }
-      client = new MongoClient(uri);
-      await client.connect();
       console.log("connected to MongoDB");
       console.log("email=", inputData.email);
       console.log("password=", inputData.password);
@@ -125,6 +136,7 @@ function MongoDBUtil() {
   };
 
   myDB.getAllRequests = async () => {
+    let client;
     try {
       client = new MongoClient(uri);
       await client.connect();
@@ -143,6 +155,7 @@ function MongoDBUtil() {
   };
 
   myDB.deleteRequest = async (request) => {
+    let client;
     try {
       if (!request.id) {
         throw new Error("id is required");
