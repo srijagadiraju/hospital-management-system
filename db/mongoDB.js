@@ -1,12 +1,11 @@
 const { MongoClient } = require("mongodb");
 const bcrypt = require("bcrypt");
+require("dotenv").config({ path: "../config.env" });
 
 function MongoDBUtil() {
   const myDB = {};
-  const uri =
-    "mongodb+srv://hlahtoo1998:28H1JDxdnJqipwwL@cluster0.qfd7kqx.mongodb.net/?retryWrites=true&w=majority";
-  // Create a MongoClient with a MongoClientOptions object to set the Stable API version
-  // const client = new MongoClient(uri);
+  const password = process.env.DATABASE_PASSWORD;
+  const uri = process.env.DATABASE.replace("<PASSWORD>", password);
   const database = "Users";
   const colRequests = "Requests";
   const colAuthen = "Users-Login";
@@ -185,10 +184,10 @@ myDB = MongoDBUtil();
 //   item: "Ultrasound Machine",
 // };
 // myDB.deleteRequest(dave);
-// myDB.insertNewUser({
-//   email: "srijagadiraju@gmail.com",
-//   password: "srija",
-// });
+myDB.insertNewUser({
+  email: "asdad@gmail.com",
+  password: "srija",
+});
 
 // myDB
 //   .getAllRequests()
