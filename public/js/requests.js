@@ -5,7 +5,7 @@ function RequestsModule(requestsID = "#requests") {
 
   function createRequestCard(request) {
     return `<div class="col-4">
-          <div class="request card">
+          <div class="request card request-card" data-id="${request.id}">
               <div class="card-body">
                   <h5 class="card-title">${request.name}</h5>
                   <p><strong>ID:</strong> ${request.id}</p>
@@ -39,6 +39,37 @@ function RequestsModule(requestsID = "#requests") {
     me.redraw(requestData);
   }
 
+  async function delRequest(request) {
+    requestsElement.addEventListener("click", async function (e) {
+      e.preventDefault();
+
+      console.log(e.target);
+
+      if (e.target.classList.contains("btn-delete")) {
+        const clickedRequestID = e.target.closest(".request-card");
+        const requestID = { id: clickedRequestID.getAttribute("data-id") };
+        console.log(requestID);
+        try {
+          const res = await fetch("/request", {
+            method: "delete",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(requestID),
+          });
+          if (res.status === 204) {
+            alert("The request has been deleted");
+            window.location.href = "./posts.html";
+          } else {
+            alert("Failed to delete!");
+          }
+        } catch (err) {
+          console.log(err.message);
+        }
+      }
+    });
+  }
+  me.delRequest = delRequest;
   me.redraw = redraw;
   me.loadRequests = loadRequests;
 
@@ -49,4 +80,5 @@ function RequestsModule(requestsID = "#requests") {
 document.addEventListener("DOMContentLoaded", function () {
   const requestsModule = RequestsModule("#requests");
   requestsModule.loadRequests();
+  requestsModule.delRequest();
 });

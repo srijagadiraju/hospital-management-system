@@ -4,7 +4,7 @@ function login() {
   let signinButton = document.getElementById("signinButton");
   let nameField = document.getElementById("nameField");
   let title = document.getElementById("title");
-
+  console.log(nameField.value);
   function isValidEmail(email) {
     // This is a simple regex pattern for email validation. You can make it more complex if needed.
     const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
@@ -34,19 +34,20 @@ function login() {
 
   signinButton.addEventListener("click", async (e) => {
     e.preventDefault();
-    const data = handleSignIn();
-    console.log(JSON.stringify(data));
+    const data = await handleSignIn();
+
     try {
-      let res = await fetch("./login", {
-        method: "POST",
+      const res = await fetch("/login", {
+        method: "post",
         headers: {
           "Content-Type": "application/json",
         },
-        body: new URLSearchParams(data),
+        body: JSON.stringify(data),
       });
       if (res.status === 200) {
         sessionStorage.setItem("email", data.email);
-        window.location.href = "./request.html";
+        window.location.href = "./posts.html";
+        alert("You have logged in successfully");
       } else {
         alert("You have logged in wrong email or password!");
       }

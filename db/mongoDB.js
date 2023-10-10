@@ -5,6 +5,10 @@ require("dotenv").config({ path: "../config.env" });
 function MongoDBUtil() {
   const myDB = {};
   const password = process.env.DATABASE_PASSWORD;
+  // const uri = process.env.DATABASE.replace(
+  //   "<PASSWORD>",
+  //   process.env.DATABASE_PASSWORD
+  // );
   const uri =
     "mongodb+srv://hlahtoo1998:28H1JDxdnJqipwwL@cluster0.qfd7kqx.mongodb.net/users?retryWrites=true&w=majority";
   const database = "Users";
