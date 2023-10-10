@@ -178,32 +178,3 @@ function MongoDBUtil() {
 }
 
 myDB = MongoDBUtil();
-// const dave = {
-//   name: "Dave Smith",
-//   id: "10240",
-//   department: "Cardiology",
-//   item: "Ultrasound Machine",
-// };
-// myDB.deleteRequest(dave);
-// myDB.insertNewUser({
-//   email: "srijagadiraju@gmail.com",
-//   password: "srija",
-// });
-
-// myDB
-//   .getAllRequests()
-//   .then((requests) => {
-//     console.log(requests);
-//   })
-//   .catch((error) => {
-//     console.error("Error:", error.message);
-//   });
-
-// Testcase for authentications
-
-// myDB.deleteRequest({
-//   name: "srija",
-//   id: "10240",
-//   department: "Cardiology",
-//   item: "Ultrasound Machine",
-// });
