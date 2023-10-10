@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "hospital inventory system with express, mongoDB, and node.js",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
@@ -20,6 +19,7 @@
   "author": "Srija Gadiraju and Hla Htoo",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.3.1",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^9.0.0",
