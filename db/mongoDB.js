@@ -1,70 +1,3 @@
-// const { MongoClient, ObjectId } = require("mongodb");
-// require("dotenv").config();
-
-// function HospitalDB() {
-//   const hospitalDB = {};
-//   const url = process.env.DB_URL || "mongodb://localhost:27017";
-//   const DB_NAME = "hospital-management-db";
-
-//   async function connectToDatabase() {
-//     const client = new MongoClient(url, { useUnifiedTopology: true });
-//     await client.connect();
-//     return client;
-//   }
-
-//   hospitalDB.read = async (collectionName, query) => {
-//     const client = await connectToDatabase();
-//     try {
-//       const db = client.db(DB_NAME);
-//       const collection = db.collection(collectionName);
-//       const result = await collection.find(query).toArray();
-//       return result;
-//     } finally {
-//       client.close();
-//     }
-//   };
-
-//   hospitalDB.create = async (collectionName, data) => {
-//     const client = await connectToDatabase();
-//     try {
-//       const db = client.db(DB_NAME);
-//       const collection = db.collection(collectionName);
-//       const result = await collection.insertOne(data);
-//       return result.insertedId;
-//     } finally {
-//       client.close();
-//     }
-//   };
-
-//   hospitalDB.update = async (collectionName, query, updateData) => {
-//     const client = await connectToDatabase();
-//     try {
-//       const db = client.db(DB_NAME);
-//       const collection = db.collection(collectionName);
-//       await collection.updateOne(query, { $set: updateData });
-//       return "success";
-//     } finally {
-//       client.close();
-//     }
-//   };
-
-//   hospitalDB.delete = async (collectionName, query) => {
-//     const client = await connectToDatabase();
-//     try {
-//       const db = client.db(DB_NAME);
-//       const collection = db.collection(collectionName);
-//       await collection.deleteOne(query);
-//       return "success";
-//     } finally {
-//       client.close();
-//     }
-//   };
-
-//   return hospitalDB;
-// }
-
-// module.exports = HospitalDB();
-
 const { MongoClient } = require("mongodb");
 const bcrypt = require("bcrypt");
 
@@ -245,66 +178,32 @@ function MongoDBUtil() {
 }
 
 myDB = MongoDBUtil();
-const dave = {
-  name: "Dave Smith",
-  id: "10240",
-  department: "Cardiology",
-  item: "Ultrasound Machine",
-};
-myDB.deleteRequest(dave);
+// const dave = {
+//   name: "Dave Smith",
+//   id: "10240",
+//   department: "Cardiology",
+//   item: "Ultrasound Machine",
+// };
+// myDB.deleteRequest(dave);
 // myDB.insertNewUser({
-//   email: "hlahtoo1998@gmail.com",
-//   password: "hlahtoo123",
+//   email: "srijagadiraju@gmail.com",
+//   password: "srija",
 // });
 
-/* Test case
-myDB
-  .getAllRequests()
-  .then((requests) => {
-    console.log(requests);
-  })
-  .catch((error) => {
-    console.error("Error:", error.message);
-  });
-*/
+// myDB
+//   .getAllRequests()
+//   .then((requests) => {
+//     console.log(requests);
+//   })
+//   .catch((error) => {
+//     console.error("Error:", error.message);
+//   });
+
 // Testcase for authentications
-// myDB.authenticateUsers({
-//   email: "hlahtoo1998@gmail.com",
-//   password: "hlahtoo123",
-// });
 
-// myDB.insertRequest({
-//   name: "had we",
+// myDB.deleteRequest({
+//   name: "srija",
 //   id: "10240",
 //   department: "Cardiology",
 //   item: "Ultrasound Machine",
 // });
-
-// User authentication
-// async function authenticateUser(client, datab, col, input) {}
-
-// async function main() {
-//   try {
-//     await client.connect();
-//     await listDatabases(client);
-
-// createMultipleProfile(client, );
-//
-// console.log(arrayOfObjects);
-// await createMultipleProfile(client, database, colAuthen, [
-//   {
-//     email: "hlahtoo1998@gmail.com",
-//     password: "hlahtoo123",
-//   },
-//   {
-//     email: "srijasgadiraju@gmail.com",
-//     passsword: "srija123",
-//   },
-// ]);
-//await listDatabases(client);
-//   } catch (e) {
-//     console.log(e);
-//   } finally {
-//     await client.close();
-//   }
-// }
