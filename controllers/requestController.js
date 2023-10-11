@@ -1,8 +1,5 @@
 import asyncHandler from "express-async-handler";
 import mongoDB from "../db/mongoDB.js";
-// const asyncHandler = require("express-async-handler");
-
-// const mongoDB = require("../db/mongoDB");
 
 export const getRequestsCon = asyncHandler(async (req, res) => {
   console.log("hello");
@@ -78,10 +75,3 @@ export const deleteRequestCon = asyncHandler(async (req, res) => {
     });
   }
 });
-
-// export default {
-//   getRequestsCon,
-//   createRequest,
-//   deleteRequestCon,
-//   updateRequest,
-// };

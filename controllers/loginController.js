@@ -1,6 +1,4 @@
-// const mongoDB = require("../db/mongoDB");
 import mongoDB from "../db/mongoDB.js";
-// dotenv.config({ path: "./config.env" });
 
 const userLogin = async (req, res) => {
   const inputUser = req.body;

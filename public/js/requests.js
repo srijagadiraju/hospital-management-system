@@ -156,7 +156,6 @@ function RequestsModule(requestsID = "#requests") {
   return me;
 }
 
-// Initialize the RequestsModule and load requests
 document.addEventListener("DOMContentLoaded", function () {
   const requestsModule = RequestsModule("#requests");
   requestsModule.loadRequests();

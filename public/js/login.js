@@ -1,10 +1,7 @@
 function loginSignUp() {
-  // const form = document.getElementById("login-form");
   let signupButton = document.getElementById("signupButton");
   let signinButton = document.getElementById("signinButton");
-  // let nameField = document.getElementById("nameField");
-  // let title = document.getElementById("title");
-  // console.log(nameField.value);
+
   function isValidEmail(email) {
     const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     return pattern.test(email);

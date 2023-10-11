@@ -1,4 +1,3 @@
-// const mongoDB = require("../db/mongoDB");
 import mongoDB from "../db/mongoDB.js";
 
 const userSignUp = async (req, res) => {

@@ -1,10 +1,6 @@
-// const { MongoClient } = require("mongodb");
 import { MongoClient } from "mongodb";
 import bcrypt from "bcrypt";
-// const bcrypt = require("bcrypt");
-// require("dotenv").config({ path: "../config.env" });
 import "dotenv/config";
-// require("dotenv/config");
 
 function MongoDBUtil() {
   const myDB = {};
@@ -27,8 +23,7 @@ function MongoDBUtil() {
     try {
       client = new MongoClient(uri);
       await client.connect();
-      console.log("connected to MongoDB");
-      console.log("Databases: ");
+
       databasesList.databases.forEach((db) => {
         console.log(`- ${db.name}`);
       });
@@ -125,7 +120,7 @@ function MongoDBUtil() {
         .db(database)
         .collection(colAuthen)
         .findOne({ email: inputData.email });
-      // check if result is not undefined
+
       if (user && (await bcrypt.compare(inputData.password, user.password))) {
         console.log("Authentication Successful!");
         return true;
@@ -133,8 +128,6 @@ function MongoDBUtil() {
         console.log("Authentication Failed!");
         return false;
       }
-      // if undefined, return false
-      // if defined, return true
     } catch (error) {
       console.error("authentication error:", error.message);
       return false;
@@ -149,9 +142,7 @@ function MongoDBUtil() {
       client = new MongoClient(uri);
       await client.connect();
       console.log("connected to MongoDB");
-      // this is returning Promise {<pending >} fix this
-      // how do i make sure that it is returning the real object
-      // do i make sure when i call it or can i make sure here
+
       return await client
         .db(database)
         .collection(colRequests)
@@ -176,7 +167,7 @@ function MongoDBUtil() {
         .db(database)
         .collection(colRequests)
         .deleteOne({ id: request.id });
-      // check if result is not undefined
+
       if (result.deletedCount === 1) {
         console.log("Delete Successful!");
         return true;
@@ -184,8 +175,6 @@ function MongoDBUtil() {
         console.log("Delete Failed!");
         return false;
       }
-      // if undefined, return false
-      // if defined, return true
     } catch (error) {
       console.error("Request error 111:", error.message);
       return false;
@@ -206,7 +195,6 @@ function MongoDBUtil() {
       console.log("connected to MongoDB");
       const filter = { id: request.id };
 
-      // The update specifying the fields to modify
       const update = {
         $set: {
           name: request.name,
@@ -238,34 +226,3 @@ function MongoDBUtil() {
   return myDB;
 }
 export default MongoDBUtil();
-
-// module.exports = MongoDBUtil();
-// const dave = {
-//   name: "Dave Smith",
-//   id: "10240",
-//   department: "Cardiology",
-//   item: "Ultrasound Machine",
-// };
-// myDB.deleteRequest(dave);
-// myDB.insertNewUser({
-//   email: "asdad@gmail.com",
-//   password: "srija",
-// });
-
-// myDB
-//   .getAllRequests()
-//   .then((requests) => {
-//     console.log(requests);
-//   })
-//   .catch((error) => {
-//     console.error("Error:", error.message);
-//   });
-
-// Testcase for authentications
-
-// myDB.deleteRequest({
-//   name: "srija",
-//   id: "10240",
-//   department: "Cardiology",
-//   item: "Ultrasound Machine",
-// });
