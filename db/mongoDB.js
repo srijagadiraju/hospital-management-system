@@ -5,19 +5,16 @@ import bcrypt from "bcrypt";
 // require("dotenv").config({ path: "../config.env" });
 import "dotenv/config";
 // require("dotenv/config");
-console.log(process.env.MONGO_URL);
 
-console.log(process.env.DATABASE_PASSWORD);
 function MongoDBUtil() {
   const myDB = {};
   const password = process.env.DATABASE_PASSWORD;
-  console.log(password);
+
   const uri = process.env.DATABASE.replace(
     "<PASSWORD>",
     process.env.DATABASE_PASSWORD
   );
-  // const uri =
-  //   "mongodb+srv://hlahtoo1998:28H1JDxdnJqipwwL@cluster0.qfd7kqx.mongodb.net/users?retryWrites=true&w=majority";
+
   const database = "Users";
   const colRequests = "Requests";
   const colAuthen = "Users-Login";
