@@ -1,16 +1,23 @@
-const { MongoClient } = require("mongodb");
-const bcrypt = require("bcrypt");
-require("dotenv").config({ path: "../config.env" });
+// const { MongoClient } = require("mongodb");
+import { MongoClient } from "mongodb";
+import bcrypt from "bcrypt";
+// const bcrypt = require("bcrypt");
+// require("dotenv").config({ path: "../config.env" });
+import "dotenv/config";
+// require("dotenv/config");
+console.log(process.env.MONGO_URL);
+
 console.log(process.env.DATABASE_PASSWORD);
 function MongoDBUtil() {
   const myDB = {};
   const password = process.env.DATABASE_PASSWORD;
-  // const uri = process.env.DATABASE.replace(
-  //   "<PASSWORD>",
-  //   process.env.DATABASE_PASSWORD
-  // );
-  const uri =
-    "mongodb+srv://hlahtoo1998:28H1JDxdnJqipwwL@cluster0.qfd7kqx.mongodb.net/users?retryWrites=true&w=majority";
+  console.log(password);
+  const uri = process.env.DATABASE.replace(
+    "<PASSWORD>",
+    process.env.DATABASE_PASSWORD
+  );
+  // const uri =
+  //   "mongodb+srv://hlahtoo1998:28H1JDxdnJqipwwL@cluster0.qfd7kqx.mongodb.net/users?retryWrites=true&w=majority";
   const database = "Users";
   const colRequests = "Requests";
   const colAuthen = "Users-Login";
@@ -183,7 +190,48 @@ function MongoDBUtil() {
       // if undefined, return false
       // if defined, return true
     } catch (error) {
-      console.error("Request error:", error.message);
+      console.error("Request error 111:", error.message);
+      return false;
+    } finally {
+      client.close();
+    }
+  };
+
+  myDB.updateRequest = async (request) => {
+    let client;
+    try {
+      client = new MongoClient(uri);
+      await client.connect();
+      console.log(request);
+      if (!request.id) {
+        throw new Error("id is required");
+      }
+      console.log("connected to MongoDB");
+      const filter = { id: request.id };
+
+      // The update specifying the fields to modify
+      const update = {
+        $set: {
+          name: request.name,
+          department: request.department,
+          item: request.item,
+        },
+      };
+
+      const result = await client
+        .db(database)
+        .collection(colRequests)
+        .updateOne(filter, update);
+      console.log(result.matchedCount);
+      if (result.matchedCount === 0) {
+        console.log("No document was updated");
+        return false;
+      } else {
+        console.log("Document was updated successfully");
+        return true;
+      }
+    } catch (error) {
+      console.error("Request error 123:", error.message);
       return false;
     } finally {
       client.close();
@@ -192,8 +240,9 @@ function MongoDBUtil() {
 
   return myDB;
 }
+export default MongoDBUtil();
 
-module.exports = MongoDBUtil();
+// module.exports = MongoDBUtil();
 // const dave = {
 //   name: "Dave Smith",
 //   id: "10240",

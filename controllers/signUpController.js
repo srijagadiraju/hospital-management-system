@@ -1,6 +1,7 @@
-const mongoDB = require("../db/mongoDB");
+// const mongoDB = require("../db/mongoDB");
+import mongoDB from "../db/mongoDB.js";
 
-exports.userSignUp = async (req, res) => {
+const userSignUp = async (req, res) => {
   const inputUser = req.body;
   if (await mongoDB.insertNewUser(inputUser)) {
     res.status(201).json({
@@ -16,3 +17,5 @@ exports.userSignUp = async (req, res) => {
     });
   }
 };
+
+export default userSignUp;

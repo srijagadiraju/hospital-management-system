@@ -1,18 +1,21 @@
 // const express = require("express");
-// import express from "express";
-// import morgan from "morgan";
-// import dotenv from "dotenv";
-// import { errorHandler } from "./middleware/errorHandler";
-// import contactRoute from "./routes/contactRoutes";
+import express from "express";
+import morgan from "morgan";
+import dotenv from "dotenv";
+import errorHandler from "./middleware/errorHandler.js";
+import path from "path";
+import requestRoute from "./routes/requestRoutes.js";
+import loginRoute from "./routes/loginRoutes.js";
+import signUpRoute from "./routes/signUpRoute.js";
 
-const express = require("express");
-const morgan = require("morgan");
-const dotenv = require("dotenv");
-const path = require("path");
-const requestRoute = require("./routes/requestRoutes");
-const errorHandler = require("./middleware/errorHandler");
-const loginRoute = require("./routes/loginRoutes");
-const signUpRoute = require("./routes/signUpRoute");
+// const express = require("express");
+// const morgan = require("morgan");
+// const dotenv = require("dotenv");
+// const path = require("path");
+// const requestRoute = require("./routes/requestRoutes");
+// const errorHandler = require("./middleware/errorHandler");
+// const loginRoute = require("./routes/loginRoutes");
+// const signUpRoute = require("./routes/signUpRoute");
 // const mongoDB = require("../db/mongoDB");
 
 console.log("1,2,3");
@@ -31,7 +34,8 @@ if (process.env.NODE_ENV === "development") {
 
 const port = process.env.PORT || 3000;
 // const contactRoute = require("./routes/contactRoutes");
-app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static("public"));
 
 app.use(express.json()); // provides parser to help parse data stream that is received from client on the server side
 app.use(morgan("dev"));

@@ -4,6 +4,8 @@ function RequestsModule(requestsID = "#requests") {
   const requestsElement = document.querySelector(requestsID);
   const updateForm = document.querySelector(".form-box");
   const overlay = document.querySelector(".overlay");
+  const btnCloseModal = document.querySelector(".btn--close-modal");
+  const submitBtn = document.getElementById("submitRequest");
 
   function createRequestCard(request) {
     return `<div class="col-4">
@@ -22,20 +24,76 @@ function RequestsModule(requestsID = "#requests") {
       </div>`;
   }
 
+  function handleRequest() {
+    // 1. Retrieve the input values.
+    const name = document.querySelector(
+      ".request-form input[placeholder='Name']"
+    ).value;
+    // const id = document.querySelector(
+    //   ".request-form input[placeholder='ID']"
+    // ).value;
+    const department = document.querySelector(
+      ".request-form input[placeholder='Department']"
+    ).value;
+    const item = document.querySelector(
+      ".request-form input[placeholder='Item']"
+    ).value;
+
+    // 2. Create a JSON object.
+    const requestData = {
+      name: name,
+      // id: id,
+      department: department,
+      item: item,
+    };
+    return requestData;
+  }
   function redraw(requests) {
     requestsElement.innerHTML = "";
     requestsElement.innerHTML = requests.map(createRequestCard).join("\n");
   }
-  function openModal(e) {
-    e.preventDefault();
+  function openModal() {
     updateForm.classList.remove("hidden");
     overlay.classList.remove("hidden");
   }
 
   const closeModal = function () {
-    modal.classList.add("hidden");
+    updateForm.classList.add("hidden");
     overlay.classList.add("hidden");
   };
+
+  btnCloseModal.addEventListener("click", closeModal);
+  overlay.addEventListener("click", closeModal);
+
+  async function clickForUpdate(dataID) {
+    submitBtn.addEventListener("click", async (e) => {
+      e.preventDefault();
+      data = await handleRequest();
+      data.id = dataID;
+      console.log("being clicked", data);
+      try {
+        const res = await fetch("/request", {
+          method: "put",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        if (res.status === 200) {
+          alert("The request has been updated");
+          window.location.href = "./posts.html";
+        } else {
+          alert("Failed to update!");
+        }
+      } catch (err) {
+        console.log(err.message);
+      }
+    });
+  }
+
   async function loadRequests() {
     const res = await fetch("/request", {
       method: "get",
@@ -50,27 +108,22 @@ function RequestsModule(requestsID = "#requests") {
     me.redraw(requestData);
   }
 
-  async function updateReq() {
+  async function delAndUpdateRequest(request) {
+    let dataID = "";
     requestsElement.addEventListener("click", async function (e) {
       e.preventDefault();
 
       console.log(e.target);
-
       if (e.target.classList.contains("btn-update")) {
         const clickedRequestID = e.target.closest(".request-card");
-        const requestID = { id: clickedRequestID.getAttribute("data-id") };
-        console.log(updateForm);
-        console.log(requestID);
+        console.log("hello, ", updateForm);
+
         openModal();
+
+        dataID = clickedRequestID.getAttribute("data-id");
       }
-    });
-  }
 
-  async function delRequest(request) {
-    requestsElement.addEventListener("click", async function (e) {
-      e.preventDefault();
-
-      console.log(e.target);
+      clickForUpdate(dataID);
 
       if (e.target.classList.contains("btn-delete")) {
         const clickedRequestID = e.target.closest(".request-card");
@@ -96,7 +149,7 @@ function RequestsModule(requestsID = "#requests") {
       }
     });
   }
-  me.delRequest = delRequest;
+  me.delAndUpdateRequest = delAndUpdateRequest;
   me.redraw = redraw;
   me.loadRequests = loadRequests;
 
@@ -107,5 +160,5 @@ function RequestsModule(requestsID = "#requests") {
 document.addEventListener("DOMContentLoaded", function () {
   const requestsModule = RequestsModule("#requests");
   requestsModule.loadRequests();
-  requestsModule.delRequest();
+  requestsModule.delAndUpdateRequest();
 });

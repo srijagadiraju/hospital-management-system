@@ -1,7 +1,8 @@
-const mongoDB = require("../db/mongoDB");
+// const mongoDB = require("../db/mongoDB");
+import mongoDB from "../db/mongoDB.js";
 // dotenv.config({ path: "./config.env" });
 
-exports.userLogin = async (req, res) => {
+const userLogin = async (req, res) => {
   const inputUser = req.body;
   console.log("input reqbody", inputUser);
   console.log("input reqbody", req.header);
@@ -19,3 +20,5 @@ exports.userLogin = async (req, res) => {
     });
   }
 };
+
+export default userLogin;

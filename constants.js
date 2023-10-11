@@ -6,4 +6,4 @@ const constants = {
   SERVER_ERROR: 500,
 };
 
-module.exports = constants;
+export default constants;
