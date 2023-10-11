@@ -34,11 +34,12 @@ The goal of this project is to create an app with frontend and backend capabilit
 - Requests Page (requests.html): allows providers/users that are logged in to add an inventory request to be shown on the All Requests page (users now have a sign out option in nav bar)
 - All Requests Page (posts.html): allows providers/users that are logged in to view all inventory requests from all departments of the hospital (users have sign out option in nav bar and have a button on page that directs them the Requests page)
 
-## App Screenshots:
+## Screenshots:
 - Home Page:
-
+![Screen Shot 2023-10-10 at 10 38 34 PM](https://github.com/srijagadiraju/hospital-management-system/assets/129122908/52276c27-f1c0-4fda-9998-686cdc363dd5)
 - Sign In/Sign Up Page:
-  
+![Screen Shot 2023-10-10 at 10 39 00 PM](https://github.com/srijagadiraju/hospital-management-system/assets/129122908/47f6cf25-4180-49ef-99ff-b16770eff276)
 - Requests Page:
-  
+![Screen Shot 2023-10-10 at 10 39 36 PM](https://github.com/srijagadiraju/hospital-management-system/assets/129122908/fd57aad1-1d8e-4087-8bca-b44c2b7dadcc)
 - All Requests Page: 
+![Screen Shot 2023-10-10 at 10 40 59 PM](https://github.com/srijagadiraju/hospital-management-system/assets/129122908/e59fe6d2-55ed-4f55-83cb-15fe13a8835a)
