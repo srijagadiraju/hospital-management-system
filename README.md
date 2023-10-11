@@ -2,7 +2,7 @@
 ## Authors: Srija Gadiraju and Hla Htoo
 
 ## Project Information/Links:
-Public Server: ADD 
+Public Server: https://hospital-management-gxqg.onrender.com/
 
 Walkthrough Video: https://youtu.be/JjL_1kzN0Nc
 
