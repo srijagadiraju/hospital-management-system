@@ -1,4 +1,4 @@
-# Hospital Inventory Management System
+# Hospital Inventory Management System 
 ## Authors: Srija Gadiraju and Hla Htoo
 
 ## Project Information/Links:
