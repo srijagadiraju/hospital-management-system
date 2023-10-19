@@ -12,7 +12,7 @@ const userLogin = async (req, res) => {
       },
     });
   } else {
-    return res.status(404).json({
+    return res.status(304).json({
       status: "fail",
       message: "Invalid ID",
     });
