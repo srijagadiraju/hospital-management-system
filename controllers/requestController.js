@@ -15,7 +15,7 @@ export const getRequestsCon = asyncHandler(async (req, res) => {
     });
   } catch (err) {
     console.log(err.message);
-    return res.status(404).json({
+    return res.status(304).json({
       status: "fail",
       message: "Requests are not available",
     });
@@ -32,7 +32,7 @@ export const createRequest = asyncHandler(async (req, res) => {
       },
     });
   } else {
-    return res.status(404).json({
+    return res.status(304).json({
       status: "fail",
       message: "More information required to create a request",
     });
@@ -51,7 +51,7 @@ export const updateRequest = asyncHandler(async (req, res) => {
       },
     });
   } else {
-    return res.status(404).json({
+    return res.status(304).json({
       status: "fail",
       message: "Failed to update the request",
     });
@@ -69,7 +69,7 @@ export const deleteRequestCon = asyncHandler(async (req, res) => {
       },
     });
   } else {
-    return res.status(404).json({
+    return res.status(304).json({
       status: "fail",
       message: "More information required to delete a request",
     });
