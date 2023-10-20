@@ -61,7 +61,7 @@ export const updateRequest = asyncHandler(async (req, res) => {
 export const deleteRequestCon = asyncHandler(async (req, res) => {
   const inputreq = req.body;
   if (await mongoDB.deleteRequest(inputreq)) {
-    res.status(204).json({
+    res.status(200).json({
       status: "sucess",
       message: "Request successfully deleted",
       data: {
